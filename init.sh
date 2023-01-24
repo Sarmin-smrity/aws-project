@@ -1,5 +1,17 @@
 #!/bin/bash
 
+# Excutor Setup
+
+sudo nano /etc/hosts #name the ip adress
+<<com
+172.31.31.202 CentralManager
+172.31.24.64 Submission
+com
+
+## EXECUTE ##
+curl -fsSL https://get.htcondor.org | sudo /bin/bash -s -- --no-dry-run --password "PASSWORD_HERE" --execute CentralManager
+
+
 # creating dir
 sudo mkdir /home/ubuntu/efs
 
