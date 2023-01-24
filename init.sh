@@ -17,4 +17,9 @@ sudo mount -t efs -o tls fs-00b6383753ff70712:/ /home/ubuntu/efs
 
 # instaling package
 sudo apt-get -y install python3-pip
-sudo python3 -m pip install pandas
+
+# fetting requiemtns 
+wget https://raw.githubusercontent.com/Sarmin-smrity/aws-project/main/requirements.txt
+
+# isntall requiremnts
+pip install -r requirements.txt
