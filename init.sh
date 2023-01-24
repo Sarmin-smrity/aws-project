@@ -34,4 +34,8 @@ sudo apt-get -y install python3-pip
 wget https://raw.githubusercontent.com/Sarmin-smrity/aws-project/main/requirements.txt
 
 # isntall requiremnts
-pip install -r requirements.txt
+#pip install -r requirements.txt
+
+pip3 install numpy==1.24.1 matplotlib==3.6.3 
+pip3 install torch==1.5.1+cpu torchvision==0.6.1+cpu -f https://download.pytorch.org/whl/torch_stable.html
+
