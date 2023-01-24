@@ -15,6 +15,10 @@ import torch.nn as nn
 from torch.utils.data import DataLoader
 import torchvision
 import numpy as np
+from sklearn.metrics import confusion_matrix, f1_score, accuracy_score, recall_score, roc_auc_score, roc_curve
+import pandas as pd
+import os
+import seaborn as sns
 
 transforms = transforms.Compose([
     transforms.Resize(256),    
@@ -46,6 +50,8 @@ data_train = datasets.ImageFolder(path, transform=transforms)
  
 data_loader = DataLoader(data_train, batch_size=batch_size, shuffle=True)
 
+print(f"Data Loaded from : {path}")
+
 # Define the RESNET model
 model=torchvision.models.resnet18(pretrained=True)
 for para in model.parameters():
@@ -69,6 +75,7 @@ train_losses = []
 # Set the training accuracy list
 train_accuracies = []
 
+print("Traning the model...")
 # Train the model
 for epoch in range(num_epochs):
     if(epoch%10==0):
@@ -119,7 +126,6 @@ for epoch in range(num_epochs):
         print(f'train_loss:{train_loss}',end='  ')
         print(f'train_accuracy:{train_accuracy}')
 
-import os
 os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
 plt.figure()
 plt.plot(train_losses)
@@ -148,13 +154,8 @@ for i, (images, labels) in enumerate(data_loader):
 
 len(true_labels)
 
-from sklearn.metrics import confusion_matrix, f1_score, accuracy_score, recall_score, roc_auc_score, roc_curve
-import pandas as pd
-
 confusion_matrix = confusion_matrix(true_labels, pred_labels)
 pd.DataFrame(confusion_matrix)
-import seaborn as sns
-
 sns.heatmap(confusion_matrix,annot=True,)
 plt.title("Resnet18_confusion_matrix")
 plt.savefig("resnet18_confusion_matrix.png", bbox_inches="tight", dpi=300)
@@ -181,7 +182,5 @@ plt.title("Receiver Operating Characteristic (ROC) Curve")
 plt.grid()
 plt.savefig("resnet18_Receiver Operating Characteristic (ROC) Curve.png", bbox_inches="tight", dpi=300)
 plt.show()
-
-import torch
 
 torch.save(model.state_dict(), 'Resnet_model.pt')
