@@ -36,6 +36,12 @@ wget https://raw.githubusercontent.com/Sarmin-smrity/aws-project/main/requiremen
 # isntall requiremnts
 #pip install -r requirements.txt
 
-pip3 install numpy==1.24.1 matplotlib==3.6.3 
+pip3 install numpy==1.24.1 matplotlib==3.6.3 sklearn seaborn pandas
 pip3 install torch==1.5.1+cpu torchvision==0.6.1+cpu -f https://download.pytorch.org/whl/torch_stable.html
 
+
+# download data
+wget https://github.com/Sarmin-smrity/aws-project/raw/main/data.zip
+
+#download sample code
+wget https://raw.githubusercontent.com/Sarmin-smrity/aws-project/main/code/resnet18.py
