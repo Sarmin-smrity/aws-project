@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 """RESNET18.ipynb
 
@@ -8,7 +9,7 @@ Original file is located at
 """
 
 from torchvision.datasets import ImageFolder
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import torch
 from torchvision import transforms, datasets
 import torch.nn as nn
@@ -126,15 +127,15 @@ for epoch in range(num_epochs):
         print(f'train_loss:{train_loss}',end='  ')
         print(f'train_accuracy:{train_accuracy}')
 
-os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
-plt.figure()
-plt.plot(train_losses)
-plt.plot(train_accuracies)
-plt.legend(['train_losses','train_accuracies'])
-plt.xlabel('epoch')
-plt.title("Resnet18")
-plt.savefig("resnet18_plot.png", bbox_inches="tight", dpi=300)
-plt.grid()
+# os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
+# plt.figure()
+# plt.plot(train_losses)
+# plt.plot(train_accuracies)
+# plt.legend(['train_losses','train_accuracies'])
+# plt.xlabel('epoch')
+# plt.title("Resnet18")
+# plt.savefig("resnet18_plot.png", bbox_inches="tight", dpi=300)
+# plt.grid()
 
 model.eval()
 true_labels = []
@@ -154,12 +155,12 @@ for i, (images, labels) in enumerate(data_loader):
 
 len(true_labels)
 
-confusion_matrix = confusion_matrix(true_labels, pred_labels)
-pd.DataFrame(confusion_matrix)
-sns.heatmap(confusion_matrix,annot=True,)
-plt.title("Resnet18_confusion_matrix")
-plt.savefig("resnet18_confusion_matrix.png", bbox_inches="tight", dpi=300)
-plt.show()
+# confusion_matrix = confusion_matrix(true_labels, pred_labels)
+# pd.DataFrame(confusion_matrix)
+# sns.heatmap(confusion_matrix,annot=True,)
+# plt.title("Resnet18_confusion_matrix")
+# plt.savefig("resnet18_confusion_matrix.png", bbox_inches="tight", dpi=300)
+# plt.show()
 
 f1 = f1_score(true_labels, pred_labels)
 print(f1)
@@ -173,14 +174,14 @@ print(recall)
 auc = roc_auc_score(true_labels, pred_labels)
 print(auc)
 
-fpr, tpr, thresholds = roc_curve(true_labels, pred_labels)
-plt.plot(fpr, tpr, "b-", label="ROC curve")
-plt.plot([0, 1], [0, 1], "k--", label="random guess")
-plt.xlabel("False Positive Rate (Fall-Out)")
-plt.ylabel("True Positive Rate (Recall)")
-plt.title("Receiver Operating Characteristic (ROC) Curve")
-plt.grid()
-plt.savefig("resnet18_Receiver Operating Characteristic (ROC) Curve.png", bbox_inches="tight", dpi=300)
-plt.show()
+# fpr, tpr, thresholds = roc_curve(true_labels, pred_labels)
+# plt.plot(fpr, tpr, "b-", label="ROC curve")
+# plt.plot([0, 1], [0, 1], "k--", label="random guess")
+# plt.xlabel("False Positive Rate (Fall-Out)")
+# plt.ylabel("True Positive Rate (Recall)")
+# plt.title("Receiver Operating Characteristic (ROC) Curve")
+# plt.grid()
+# plt.savefig("resnet18_Receiver Operating Characteristic (ROC) Curve.png", bbox_inches="tight", dpi=300)
+# plt.show()
 
 torch.save(model.state_dict(), 'Resnet_model.pt')
