@@ -40,8 +40,8 @@ def main(num):
   print(f"Data Loaded from : {path}")
 
   # Define the RESNET model
-  model=torchvision.models.resnet18(pretrained=True)
-  # model=torchvision.models.AlexNet()
+  #model=torchvision.models.resnet18(pretrained=True)
+  model=torchvision.models.AlexNet()
   #model=torchvision.models.vgg11()
   for para in model.parameters():
       para.require_grad=False
@@ -93,8 +93,8 @@ def main(num):
           print(f'train_loss:{train_loss}',end='  ')
           print(f'train_accuracy:{train_accuracy}')
 
-  torch.save(model.state_dict(), f'/mnt/efs/modeling/resnet18/resnet_model_{num}.pt')
-  #torch.save(model.state_dict(), f'/mnt/efs/modeling/alexnet/alexnet_model_{num}.pt')
+  #torch.save(model.state_dict(), f'/mnt/efs/modeling/resnet18/resnet_model_{num}.pt')
+  torch.save(model.state_dict(), f'/mnt/efs/modeling/alexnet/alexnet_model_{num}.pt')
   #torch.save(model.state_dict(), f'/mnt/efs/modeling/vgg/vgg_model_{num}.pt')
   
   
@@ -103,4 +103,4 @@ if __name__ == "__main__":
     number = int(sys.argv[1])
     main(number)
   else:
-     print("Invalid number of arguments. Usage: python resnet18.py number")
+     print("Invalid number of arguments. Usage: python alexnet.py number")
